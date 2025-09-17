@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "To cite this repository, use:"
+license: CC-BY-4.0
+title: "Black Soldier Fly Separation and Counting: Design, Software, and Data"
+date-released: "2025-09-12"
+doi: DOI
+type: software
+authors:
+  - family-names: Biner
+    given-names: Jonas
+    email: jobiner@student.ethz.ch
+    ordid: 
+  - family-names: Tkaczuk
+    given-names: Jakub
+    email: jtkaczuk@ethz.ch
+    orcid: https://orcid.org/0000-0001-7997-9423
+  - family-names: Zurbrugg
+    given-names: Christian
+    email: christian.zurbruegg@eawag.ch
+    orcid: https://orcid.org/0000-0003-4980-4483
+  - family-names: Diener
+    given-names: Stefan
+    email: stefan.diener@eclose.info
+    orcid: https://orcid.org/0000-0002-6622-6980
+  - family-names: Tilley
+    given-names: Elizabeth
+    email: tilleye@ethz.ch
+    orcid: https://orcid.org/0000-0002-2095-9724
+contact:
+  - family-names: Biner
+    given-names: Jonas
+    email: jobiner@student.ethz.ch
+    ordid: 
+version: 0.0.1
