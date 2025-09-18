@@ -5,8 +5,8 @@
 <h1> Black Soldier Fly Separation and Counting: Design, Software, and Data </h1>
 
 <b>Contributors</b>  
-- Jonas Biner <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">
-<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /> XXXX-XXXX-XXXX-XXXX
+- Jonas Biner <a href="https://orcid.org/0009-0008-2161-3013">
+<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /> 0009-0008-2161-3013
 </a> *author, developer*  
 - Jakub Tkaczuk <a href="https://orcid.org/0000-0001-7997-9423">
 <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /> 0000-0001-7997-9423

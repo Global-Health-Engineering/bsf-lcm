@@ -9,7 +9,7 @@ authors:
   - family-names: Biner
     given-names: Jonas
     email: jobiner@student.ethz.ch
-    ordid: 
+    ordid: https://orcid.org/0009-0008-2161-3013
   - family-names: Tkaczuk
     given-names: Jakub
     email: jtkaczuk@ethz.ch
@@ -30,5 +30,5 @@ contact:
   - family-names: Biner
     given-names: Jonas
     email: jobiner@student.ethz.ch
-    ordid: 
+    ordid: https://orcid.org/0009-0008-2161-3013
 version: 0.0.1
