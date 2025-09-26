@@ -1,6 +1,6 @@
 ---
 title: "Black Soldier Fly Larvae Counting Machine"
-subtitle: "Design, Operation, and Results"
+subtitle: "Design, Assembly, and Usage Manual"
 number-sections: true
 format: html
 ---

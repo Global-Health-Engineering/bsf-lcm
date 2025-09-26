@@ -31,7 +31,7 @@
 <br><br>
 <b>Complete description of system design, functionalities, and operation is available on  
 <a href="https://global-health-engineering.github.io/bsf-lcm/">Github pages</a>  
-</b>
+</b>  
 It compliments the openly-accessible master's thesis, available on the  
 <a href="">ETH Research Collection</a>
 </p>
