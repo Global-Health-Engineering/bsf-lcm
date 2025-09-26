@@ -1,0 +1,87 @@
+---
+title: "Usage Manual"
+number-sections: true
+format: html
+---
+
+<!-- badges: start -->
+[![](https://img.shields.io/badge/License-CERN_OHL_S--2.0-light)](https://opensource.org/license/cern-ohl-s)
+[![](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+<!-- badges: end -->
+
+# Operation
+
+Below, the the process of preparing and counting the 5-DOL with LCM MK1 is described. The entire batch of 5-DOL larvae should go through the sieving and the sedimentation step. This removes most of the chicken feed and frass from the larvae and removes larvae which are too small to be transferred and counted.
+
+## Sieving
+
+### Materials needed
+
+- Sieves (3 mm, 2 mm, and 1.5 mm spacing)
+- Collection bowl
+- Two more containers (one for the larvae and one for the chicken feed)
+
+![Figure 1. Sieves](img/sieves.jpg){width=50%}
+
+### Preparation
+
+1. Place the collection bowl on the table.
+2. Stack sieves on the bowl starting with the smallest gap on the bottom, progressing up to largest gap. Rotate each sieve 90° relative to sieve below. *(Only use 1.5 mm sieve if larvae are small enough to pass through it, otherwise they will get stuck).*
+
+### Procedure
+
+1. Pour **100 g of larvae mix** into the top sieve.
+2. Remove the sieves one after another as soon as no more movement is spotted in the sieve (remove them carefully causing as little vibration as possible).
+3. Pour the separated chicken feed from the removed sieves into chicken feed collection container.
+
+Repeat the process if there are still large chunks of chicken feed visible in the larvae mix (2–3 times bigger than the size of the larvae).
+
+**Important: Only process 100 g of larvae chicken feed mix per batch.**
+
+## Sedimentation
+
+The goal of the sedimentation step is to remove the frass from the previously sieved larvae. Additionally, by using the gold pan, larvae smaller than ~1 mm are also separated. To guarantee a high enough separation quality this step needs to be repeated multiple times.
+
+### Materials needed
+
+- Gold Pan  
+- Container with sieved larvae (from the previous step)  
+- 2 more containers (1 for processed larvae, 1 for frass to be dumped in)  
+
+### Procedure
+
+1. Hold the gold pan at an upward angle of around 45° and fill move the preprocessed larvae from the previous step into the gold pan (Processing 100 g of larvae and frass mix was successful; the maximum possible load must be found by trial and error), see Figure 2a.
+2. Tilt the gold pan forward until larvae start pouring out into the collection container. Increase the angle steadily until all large larvae have fallen out of the pan, see Figures 2b and 2c.
+3. Rotate the the gold pan back upwards to a steep angle and knock it on the back so the frass collects at the back side. Then knock from the side to move the frass into a corner. Pour the separated frass into the frass collection container *(Smaller larvae may remain in the frass and should be added back into the chicken feed larvae boxes for transfer and counting on a later day).*  
+
+Repeat this three-step process until the amount of frass removed in each cycle decreases drastically. After finishing, pour the completely preprocessed larvae into another large collection container.  
+
+::::{.columns}
+::: {.column width="50%"}
+![Figure 2a. Fill the pan with larvae](img/goldpan1.jpg){width=80%}
+:::
+
+::: {.column width="50%"}
+![Figure 2b. Tilt the pan forward slowly over a container](img/goldpan2.jpg){width=85%}
+:::
+
+::: {.column width="50%"}
+![Figure 2c. Let the larvae with some frass fall into the container](img/goldpan3.jpg){width=80%}
+:::
+
+::: {.column width="50%"}
+![Figure 2d. Tilt the pan backwards and knock the separated frass into a corner](img/goldpan5.jpg){width=85%}
+:::
+::::
+
+## Counting
+
+As soon as all the larvae have been preprocessed, they can be fed into the counting step.
+
+![Figure 3. Counting machine with running software](img/lcm_buttons_described.jpg){width=100%}
+
+### Procedure
+
+1. Take a sample from the freshly separated larvae.
+2. Set the counter of the machine to 0 (click **RESET COUNTER**).
+3. Pour the sample into the funnel of the counting machine.

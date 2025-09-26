@@ -1,10 +1,15 @@
+---
+title: "Black Soldier Fly Larvae Counting Machine"
+subtitle: "Design, Operation, and Results"
+number-sections: true
+format: html
+---
+
 <!-- badges: start -->
 [![](https://img.shields.io/badge/License-CERN_OHL_S--2.0-light)](https://opensource.org/license/cern-ohl-s)
 [![](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 <!-- badges: end -->
-
-<h1> Black Soldier Fly Larvae Counting Machine </h1>
 
 <b>Contributors</b>  
 - Jonas Biner <a href="https://orcid.org/0009-0008-2161-3013">
@@ -24,21 +29,33 @@
 </a> *supervisor*  
 
 <br>
-<p align="middle"> 
-<img src="img/ETH_GHE_logo.svg" width=600>
-<br><br>
-<img src="img/eawag.png" width=250>
-<br><br>
-<b>Complete description of system design, functionalities, and operation is available on  
-<a href="https://global-health-engineering.github.io/bsf-lcm/">Github pages</a>  
-</b>
-It compliments the openly-accessible master's thesis, available on the  
-<a href="">ETH Research Collection</a>
+<p align="middle">
+![](img/ETH_GHE_logo.svg){width=90%}  
+<br>
+![](img/eawag.png){width=40%}  
+<br>
+Github repository for this page sits [here](https://github.com/Global-Health-Engineering/bsf-lcm).
 </p>
 
-# Overview
+# Introduction {#sec-intro}
 
-# Licenses
+The Larvae Counting Machine (LCM) MK1 is designed to facilitate the counting of Five-Days-Old (5-DOL) Black Soldier Fly (BSF) larvae. It separates the larvae from frass and chicken feed to guarantee high homogeneity of the larvae batch making the sample more representative; and automates counting of samples. The process involves three steps:
+
+- Sieving
+- Sedimentation
+- Counting
+
+# Overview {#sec-overview}
+
+The LCM MK1 consists of two funnels mounted on two flat boards and a 3D printed box containing the electronics. During operation the setup should look as shown in Figure 1.
+
+![Figure 1. Larvae Counting Machine Mark 1](img/lcm_mk1.jpg){width=100%}
+
+The purpose of the first circular funnel is to facilitate the loading of larvae into the second funnel, which in turn forces them to spread out horizontally along the back wall and makes them fall out through holes on the side the funnel one after another. The falling larvae are filmed by a camera located at the back wall of the 3D printed electronics box. Then the LCM MK1 python program, running on a Raspberry Pi 5, uses frame differencing to count the larvae falling through the camera's field of view.
+
+# Cost breakdown {#sec-costs}
+
+# Licenses {#sec-license}
 
 The three core elements of this project are licensed under:
 

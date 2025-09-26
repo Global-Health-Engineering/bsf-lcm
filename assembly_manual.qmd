@@ -1,0 +1,11 @@
+---
+title: "Preparation and Assembly"
+number-sections: true
+format: html
+---
+
+<!-- badges: start -->
+[![](https://img.shields.io/badge/License-CERN_OHL_S--2.0-light)](https://opensource.org/license/cern-ohl-s)
+[![](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+<!-- badges: end -->
+

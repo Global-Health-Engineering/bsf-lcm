@@ -1,0 +1,44 @@
+---
+title: "Software"
+number-sections: true
+format: html
+---
+
+<!-- badges: start -->
+[![](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+<!-- badges: end -->
+
+# Start up
+
+To turn the larvae counting software on the Raspberry Pi 5:
+
+- Plug in the power supply
+- Wait until the Rapsberry Pi boots up
+- Press and hold the **LCM Launch** icon, located on desktop
+- Click **Open**
+- Click **Execute**
+- Double-click on the Top bar of the newly opened window to open it in a full screen mode
+
+# Button Layout
+
+The software allows the user to navigate the menu of the program with 6 built-in buttons. The function of each button is described in Figure 1.
+
+![Figure 1. Functional buttons](img/lcm_buttons_described.jpg){width=100%}
+
+# Parameter Tuning
+
+The constant parameters used by the software to differentiate and count the larvae can be tuned to adjust the system to the existing lighting conditions.
+
+**Important**: All the images are converted into grey scale so each pixel has associated a single value ranging from 0 (black) to 255 (white).
+
+The parameters used are as follows:
+
+- **Multiplier** multiplies each pixel value of the taken images by a fixed value. It increases the contrast of the image but if the multiplied pixel value is 255 or higher, all pixes will be displayed as white.
+- **Scalar**. This fixed number is added to each pixel value of the image so the the brightness of the black and white image can be changed.
+- **Minimum brightness**. After the previous two transformations are applied to all pixes, the image is converted into a binary. Each pixel with value equal or higher than the minimum brightness is set to 255 (white) and all others are set to 0 (black).
+- **Minimum box size** determines what minimum size in pixels a counted object, falling in front of the camera, should have. This parameter prevents counting of noise and chicken feed falling out of the funnel.
+- **Delta** is used to prevent double counting of the same larvae by comparing the x coordinate of a larvae with the ones of previously counted larvae plus and minus the chosen delta value. Should a larvae have already been counted in the zone, the new box is not counted.
+- **Counting line height**. In order to prevent the larvae from being counted while crawling around in the funnel, the program only counts the larvae below the counting line displayed in the live feed on the screen . The value should be set such that the line is always located right below the funnel, as shown in Figure 1.
+
+The parameters should be set by default to make the machine operate according to expectations, so that only the **counting line height** should be adapted, if necessary. If frass particles smaller than the larvae are counted try increasing the **minimum box size**. If too many larvae are missed try decreasing the **minimum box size**.
