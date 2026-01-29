@@ -1,6 +1,6 @@
 <!-- badges: start -->
 [![](https://img.shields.io/badge/License-CERN_OHL_S--2.0-light)](https://opensource.org/license/cern-ohl-s)
-[![](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 <!-- badges: end -->
 
@@ -45,5 +45,5 @@ The three core elements of this project are licensed under:
 | Component      | License                                                                                                |
 |----------------|--------------------------------------------------------------------------------------------------------|
 | Hardware       | [CERN-OHL-S 2.0](https://opensource.org/license/cern-ohl-s)                                            |
-| Software       | [Apache 2.0](https://opensource.org/license/apache-2-0)                                                |
+| Software       | [MIT](https://opensource.org/licenses/MIT)                                                             |
 | Documentation  | [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)         |
