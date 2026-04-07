@@ -9,17 +9,17 @@ website:
       - href: index.qmd
         text: Home
       - href: assembly_manual.qmd
-        text: Preparation and Assembly 
-      - href: usage_manual.qmd
-        text: Usage Manual
+        text: Preparation and Assembly
       - href: software.qmd
         text: Software
+      - href: operation_and_maintenance.qmd
+        text: Operation and Maintenance
     right:
       - icon: "envelope-at"
         href: "mailto:ghe@mavt.ethz.ch?subject=BSF Larvae Counting Machine"
         aria-label: Email
       - icon: github
-        href: https://github.com/Global-Health-Engineering/incinerate-with-hx
+        href: https://github.com/Global-Health-Engineering/bsf-lcm
         aria-label: GitHub
       - icon: chat-left-dots
         href: https://matrix.to/#/#ghe-open:staffchat.ethz.ch
@@ -33,7 +33,7 @@ website:
           href: "mailto:ghe@mavt.ethz.ch?subject=BSF Larvae Counting Machine"
           aria-label: Email
         - icon: github
-          href: https://github.com/Global-Health-Engineering/incinerate-with-hx
+          href: https://github.com/Global-Health-Engineering/bsf-lcm
           aria-label: GitHub
         - icon: chat-left-dots
           href: https://matrix.to/#/#ghe-open:staffchat.ethz.ch
