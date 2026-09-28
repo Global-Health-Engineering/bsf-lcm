@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=BSF Larvae Counter
+Exec=python3 /home/lcm/Desktop/BSF_LCM_MK2.py
+Terminal=false
+X-GNOME-Autostart-enabled=true
