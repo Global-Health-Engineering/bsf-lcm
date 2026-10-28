@@ -2,25 +2,44 @@ import cv2
 import numpy as np
 import time
 from picamera2 import Picamera2
+import os
+from datetime import datetime
+
+# === SAVE PICTURES ===
+timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+save_folder = f"pictures_{timestamp}"
+
+original_folder = os.path.join(save_folder, "original")
+grayscale_folder = os.path.join(save_folder, "grayscale")
+annotated_folder = os.path.join(save_folder, "annotated")
+
+os.makedirs(original_folder, exist_ok=True)
+os.makedirs(grayscale_folder, exist_ok=True)
+os.makedirs(annotated_folder, exist_ok=True)
+
+saved_frame_index = 0
+
+print(f"Saving pictures in: {save_folder}")
+# =====================
 
 # === Camera Setup ===
 picam2 = Picamera2()
-config = picam2.create_preview_configuration(main={"size": (3280, 1300), "format": "RGB888"})
+config = picam2.create_preview_configuration(main={"size": (3280, 1300), "format": "RGB888"}) # image format and resolution
 picam2.configure(config)
 picam2.start()
 time.sleep(1)  # Allow camera to warm up
 
 # === Parameters ===
 counter = 0
-countingline = 0.2
-lowerlimit = 0.7
+countingline = 0.2 # upper boundary of the counting area (as a fraction of image height)
+lowerlimit = 0.7 # lower boundary of the counting area (as a fraction of image height)
 
 multiplier = 1
 scalar = 0
 
-min_brightness = 10
-min_Area = 1000
-delta = 60
+min_brightness = 10 # threshold for detection brightness change
+min_Area = 1000 # minimum area of detected contour to be considered a valid object
+delta = 60 # threshold for detection movement (horizontal distance between detected contours)
 
 memory_current = []
 memory_past = []
@@ -29,7 +48,7 @@ kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
 
 # === FPS CAP ===
 TARGET_FPS = 16
-FRAME_PERIOD = 1.0 / TARGET_FPS
+FRAME_PERIOD = 1.0 / TARGET_FPS # 16 frames per second
 # =================
 
 # === LONG PRESS SETTINGS (reset counter) ===
@@ -47,7 +66,7 @@ exit_btn = None  # (x1, y1, x2, y2)
 # =========================================
 
 # === DISPLAY MODE ===
-maintenance = False  # True: show Live + Binary | False: show fullscreen black count screen
+maintenance = True  # True: show Live + Binary | False: show fullscreen black count screen
 # ====================
 
 # FPS shown on the black screen (updates once per second)
@@ -119,9 +138,14 @@ try:
     while True:
         loop_start = time.perf_counter()  # === FPS CAP ===
 
-        frame = picam2.capture_array()
-        frame = cv2.convertScaleAbs(frame, alpha=multiplier, beta=scalar)
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        frame = picam2.capture_array() # capture a frame from the camera
+        frame = cv2.convertScaleAbs(frame, alpha=multiplier, beta=scalar) # apply brightness/contrast adjustments
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY) # convert to grayscale for processing
+
+        # Save original and grayscale images
+        filename = f"frame_{saved_frame_index:06d}.jpg"
+        cv2.imwrite(os.path.join(original_folder, filename), frame)
+        cv2.imwrite(os.path.join(grayscale_folder, filename), gray)
 
         # Frame differencing
         diff = cv2.subtract(gray, prev_gray)
@@ -135,18 +159,20 @@ try:
         if maintenance:
             cv2.drawContours(frame, contours, -1, (0, 255, 0), 3)
 
+
         for cnt in contours:
-            area = cv2.contourArea(cnt)
-            if area > calibration_area:
+            area = cv2.contourArea(cnt) # calculate the area of the contour
+            if area > calibration_area: # records the largest contour area so far
                 calibration_area = area
                 print(area)
 
             if area > min_Area:
-                x, y, w, h = cv2.boundingRect(cnt)
+                x, y, w, h = cv2.boundingRect(cnt) # smallest rectangle that can contain the contour
                 if maintenance:
                     cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
-                cx = x + w // 2
+                cx = x + w // 2 # center x-coordinate of the bounding rectangle
 
+                # check if this might be an already counted larva
                 found = any(cx - delta <= val <= cx + delta for val in (memory_current + memory_past))
                 if not found and (y + h) > countingline and y < lowerlimit:
                     counter += 1
@@ -182,7 +208,7 @@ try:
                 exit_triggered = True
         # =========================================================
 
-        if maintenance:
+        if maintenance: # when maintenance is True
             # Draw horizontal counting line + UI
             cv2.line(frame, (0, countingline), (width, countingline), (255, 0, 0), 2)
             cv2.line(frame, (0, lowerlimit), (width, lowerlimit), (255, 0, 0), 2)
@@ -195,12 +221,18 @@ try:
             cv2.putText(frame, f"Count: {counter}", (30, 50),
                         cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255, 255, 255), 2)
 
+
+            # Save annotated image
+            cv2.imwrite(os.path.join(annotated_folder, filename), frame)
+
             # Show previews
             preview = cv2.resize(frame, (960, 540))
             cv2.imshow("Live", preview)
             cv2.imshow("Binary", binary)
 
-        else:
+            saved_frame_index += 1  # increment saved frame index for next iteration
+
+        else: # when maintenance is False
             # Fullscreen black screen (720x1280) with centered green count + FPS + warning border + EXIT button
             canvas_h, canvas_w = 720, 1280
             black = np.zeros((canvas_h, canvas_w, 3), dtype=np.uint8)
@@ -268,9 +300,9 @@ try:
 
             cv2.imshow("Count", black)
 
-        prev_gray = gray.copy()
-        memory_past = memory_current
-        memory_current = []
+        prev_gray = gray.copy() # makes a copy of the current gray frame to use in the next iteration as reference
+        memory_past = memory_current # store the current frame's detected centers for comparison in the next frame
+        memory_current = [] # reset the current frame's detected centers for the next iteration
 
         frame_count += 1
         current_time = time.time()
@@ -297,6 +329,6 @@ try:
             time.sleep(sleep_time)
         # =================
 
-finally:
-    picam2.stop()
-    cv2.destroyAllWindows()
+finally: # clean stop
+    picam2.stop() # stop the camera
+    cv2.destroyAllWindows() # destroy all OpenCV windows
