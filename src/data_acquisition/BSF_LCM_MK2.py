@@ -6,21 +6,31 @@ import os
 from datetime import datetime
 
 # === SAVE PICTURES ===
-timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-save_folder = f"pictures_{timestamp}"
 
-original_folder = os.path.join(save_folder, "original")
-grayscale_folder = os.path.join(save_folder, "grayscale")
-annotated_folder = os.path.join(save_folder, "annotated")
+save_pictures = True  # Set to True to save original, grayscale, and annotated images, False to skip saving
+if save_pictures:
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-os.makedirs(original_folder, exist_ok=True)
-os.makedirs(grayscale_folder, exist_ok=True)
-os.makedirs(annotated_folder, exist_ok=True)
+    folder = os.path.dirname(os.path.abspath(__file__))
+    main_folder = os.path.join(folder, "folder")
+    os.makedirs(main_folder, exist_ok=True)
 
-saved_frame_index = 0
+
+    save_folder = f"pictures_{timestamp}"
+    save_folder = os.path.join(main_folder, save_folder)
+
+    original_folder = os.path.join(save_folder, "original")
+    grayscale_folder = os.path.join(save_folder, "grayscale")
+    annotated_folder = os.path.join(save_folder, "annotated")
+
+    os.makedirs(original_folder, exist_ok=True)
+    os.makedirs(grayscale_folder, exist_ok=True)
+    os.makedirs(annotated_folder, exist_ok=True)
+
+    saved_frame_index = 0
+
 
 print(f"Saving pictures in: {save_folder}")
-# =====================
 
 # === Camera Setup ===
 picam2 = Picamera2()
@@ -143,9 +153,10 @@ try:
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY) # convert to grayscale for processing
 
         # Save original and grayscale images
-        filename = f"frame_{saved_frame_index:06d}.jpg"
-        cv2.imwrite(os.path.join(original_folder, filename), frame)
-        cv2.imwrite(os.path.join(grayscale_folder, filename), gray)
+        if save_pictures:
+            filename = f"frame_{saved_frame_index:06d}.jpg"
+            cv2.imwrite(os.path.join(original_folder, filename), frame)
+            cv2.imwrite(os.path.join(grayscale_folder, filename), gray)
 
         # Frame differencing
         diff = cv2.subtract(gray, prev_gray)
@@ -223,14 +234,15 @@ try:
 
 
             # Save annotated image
-            cv2.imwrite(os.path.join(annotated_folder, filename), frame)
+            if save_pictures:
+                cv2.imwrite(os.path.join(annotated_folder, filename), frame)
+                saved_frame_index += 1  # increment saved frame index for next iteration
+
 
             # Show previews
             preview = cv2.resize(frame, (960, 540))
             cv2.imshow("Live", preview)
             cv2.imshow("Binary", binary)
-
-            saved_frame_index += 1  # increment saved frame index for next iteration
 
         else: # when maintenance is False
             # Fullscreen black screen (720x1280) with centered green count + FPS + warning border + EXIT button
