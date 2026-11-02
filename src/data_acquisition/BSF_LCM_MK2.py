@@ -6,13 +6,12 @@ import os
 from datetime import datetime
 
 # === SAVE PICTURES ===
-
 save_pictures = True  # Set to True to save original, grayscale, and annotated images, False to skip saving
 if save_pictures:
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     folder = os.path.dirname(os.path.abspath(__file__))
-    main_folder = os.path.join(folder, "folder")
+    main_folder = os.path.join(folder, "all_pictures")
     os.makedirs(main_folder, exist_ok=True)
 
 
@@ -61,10 +60,11 @@ TARGET_FPS = 16
 FRAME_PERIOD = 1.0 / TARGET_FPS # 16 frames per second
 # =================
 
-# === LONG PRESS SETTINGS (reset counter) ===
+# === LONG PRESS SETTINGS (reset counter) or EXIT IN MAINTENANCE MODE ===
 LONG_PRESS_SECONDS = 0.8  # adjust (e.g. 0.5 .. 1.5)
 press_start_time = None
 press_active = False
+maintenance_exit_triggered = False
 # ==========================
 
 # === EXIT BUTTON SETTINGS (black screen) ===
@@ -97,7 +97,7 @@ def point_in_rect(x, y, rect):
 
 # === Touch callback ===
 def on_touch(event, x, y, flags, param):
-    global press_start_time, press_active
+    global press_start_time, press_active, maintenance_exit_triggered
     global exit_press_start, exit_press_active, exit_triggered
     global exit_btn
 
@@ -194,6 +194,8 @@ try:
         if press_active and press_start_time is not None:
             held = time.monotonic() - press_start_time
             if held >= LONG_PRESS_SECONDS:
+                maintenance_exit_triggered = True
+                #reset the counter and last_count_time
                 counter = 0
                 last_count_time = time.monotonic()
                 print("Counter reset by long press")
@@ -327,7 +329,7 @@ try:
             prev_time = current_time
 
         # Exit button long-press triggers quit
-        if exit_triggered:
+        if exit_triggered or maintenance_exit_triggered:
             break
 
         # Press q to quit (if a keyboard is attached)
